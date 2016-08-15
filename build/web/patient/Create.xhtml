@@ -12,8 +12,6 @@
             <h:form id="PatientCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{patientController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePatientLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{patientController.selected.id}" title="#{bundle.CreatePatientTitle_id}" />
                         <p:outputLabel value="#{bundle.CreatePatientLabel_sname}" for="sname" />
                         <p:inputText id="sname" value="#{patientController.selected.sname}" title="#{bundle.CreatePatientTitle_sname}" />
                         <p:outputLabel value="#{bundle.CreatePatientLabel_tname}" for="tname" />
@@ -25,12 +23,18 @@
                         <p:outputLabel value="#{bundle.CreatePatientLabel_age}" for="age" />
                         <p:inputText id="age" value="#{patientController.selected.age}" title="#{bundle.CreatePatientTitle_age}" />
                         <p:outputLabel value="#{bundle.CreatePatientLabel_gender}" for="gender" />
-                        <p:inputText id="gender" value="#{patientController.selected.gender}" title="#{bundle.CreatePatientTitle_gender}" />
+                        <p:selectOneMenu id="gender" value="#{patientController.selected.gender}" >
+                            <f:selectItems value="#{enumController.genderValues}"
+                                           var="genderItem"
+                                           itemValue="#{genderItem}"
+                                           itemLabel="#{genderItem}"/>
+                        </p:selectOneMenu> 
                         <p:outputLabel value="#{bundle.CreatePatientLabel_area}" for="area" />
                         <p:selectOneMenu id="area" value="#{patientController.selected.area}" >
-                            <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{enumController.areaValues}"
                                            var="areaItem"
-                                           itemValue="#{areaItem}"/>
+                                           itemValue="#{areaItem}"
+                                           itemLabel="#{areaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreatePatientLabel_patientCondition}" for="patientCondition" />
                         <p:selectOneMenu id="patientCondition" value="#{patientController.selected.patientCondition}" >

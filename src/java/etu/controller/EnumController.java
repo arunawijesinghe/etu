@@ -32,6 +32,9 @@ private CategoryType selected;
    public CategoryType[] getCategoryValues() {
     return CategoryType.values();
   }
+   public CategoryType[] getAreaValues() {
+    return CategoryType.values();
+  }
 
     public CategoryType getSelected() {
         return selected;
