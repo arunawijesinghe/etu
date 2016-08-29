@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>AdminPage</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-desktop.css" />
+        <link rel="stylesheet" href="css/style-1000px.css" />
+        <link rel="stylesheet" href="css/style-mobile.css" />
+        <link rel="stylesheet" href="css/style_1.css" />
+        <link rel="stylesheet" href="css/5grid/core.css" />
+
+
+    </h:head>
+    <h:body>
+
+        <f:view locale="#{languageController.language}">
+            <div id="header">
+                <div class="clearfix">
+                    <div>
+                        <h1>
+                            <h:outputLabel value="#{bundle.AppName}" style="font-size:x-large; color: #fff;"/>
+                        </h1>
+                    </div>
+                    <div id="header">
+                        <div style="color: red;float: right;" >
+                            <h:form >
+                                <table >
+                                    <tr>
+                                        <td>
+                                            <h:commandLink value="#{bundle.LanNameSinhala}" action="#{languageController.makeLanguageSinhala()}" rendered="#{languageController.language ne 'si'}" ></h:commandLink>
+                                        </td>
+                                        <td>
+                                            <h:outputLabel value="|"  rendered="#{languageController.language eq 'en'}"></h:outputLabel>
+                                        </td>
+                                        <td>
+                                            <h:commandLink value="#{bundle.LanNameTamil}" action="#{languageController.makeLanguageTamil()}" rendered="#{languageController.language ne 'ta'}"></h:commandLink>
+                                        </td>
+                                        <td>
+                                            <h:outputLabel value="|"  rendered="#{languageController.language ne 'en'}"></h:outputLabel>
+                                        </td>
+                                        <td>
+                                            <h:commandLink value="#{bundle.LanNameEnglish}" action="#{languageController.makeLanguageEnglish()}" rendered="#{languageController.language ne 'en'}"></h:commandLink>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h:form>
+                        </div>
+                        <ul class="navigation">
+                            <li class="active">
+                                <a href="index.xhtml">Admin Page</a>
+                            </li>
+                            <li>
+                                <a href="about.html">About</a>
+                            </li>
+                            <li>
+                                <a href="practices.html">Practices</a>
+                            </li>
+                            <li>
+                                <a href="lawyers.html">Our Lawyers</a>
+                            </li>
+                            <li>
+                                <a href="news.html">News</a>
+                                <div>
+                                    <a href="singlepost.html">News Single Post</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             <div id="footer-wrapper">
+            <footer class="5grid-layout" id="site-footer">
+                <div class="row">
+                    <div class="3u">
+
+                        
+                </div>
+                </div></footer></div>
+
+            <div class="row">
+                <div class="do-3u">
+                    <section class="first">
+
+                        <ul class="link-list">
+                            <h:link outcome="/beds/List" value="#{bundle.ViewBedsShowAllLink}"/>
+                            <br />
+                            <h:link outcome="/category/List" value="Show All Category Items"/>
+                            <br /></ul>
+                    </section>
+
+                </div>
+                <div class="do-3u">
+                    <section class="first">
+
+                        <ul class="link-list">
+                            <h:link outcome="/department/List" value="Show All Department Items"/>
+                            <br />
+                            <h:link outcome="/patient/List" value="Show All Patient Items"/>
+                        </ul>
+                    </section>
+
+                </div>
+
+            </div>
+            <div id="contents">
+
+
+                <br />
+                <h:link outcome="/unit/List" value="Show All Unit Items"/>
+                <br />
+                <h:link outcome="/webUser/List" value="Show All WebUser Items"/>
+
+
+            </div>
+
+
+            <div id="footer">
+                <div class="clearfix">
+                    <div class="section">
+                        <h4>Latest News</h4>
+                        <p>
+                            This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text. You can remove any link.
+                        </p>
+                    </div>
+                    <div class="section contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            <span>Address:</span> Karapitiya, Galle.
+                        </p>
+                        <p>
+                            <span>Phone:</span> +94 (0) 91 2234061
+                        </p>
+                        <p>
+                            <span>Fax:</span> +94 (0) 91 2234061
+                        </p>
+                        <p>
+                            <span>Email:</span>  rhospital@sltnet.lk
+                        </p>
+                    </div>
+                    <div class="section">
+                        <h4>SEND US A MESSAGE</h4>
+                        <p>
+                            If you're having problems editing this website template, then don't hesitate to ask for help on the Forums.
+                        </p>
+                        <a href="http://www.freewebsitetemplates.com/misc/contact/" class="subscribe">Click to send us an email</a>
+                    </div>
+                </div>
+                <div id="footnote">
+                    <div class="clearfix">
+                        <div class="connect">
+                            <a href="#" class="facebook"></a><a href="http://freewebsitetemplates.com/go/twitter/" class="twitter"></a><a href="http://freewebsitetemplates.com/go/googleplus/" class="googleplus"></a><a href="http://pinterest.com/fwtemplates/" class="pinterest"></a>
+                        </div>
+
+                        <p>
+                            © Copyright 2023 Manes Winchester. All Rights Reserved. |<a href="index.xhtml"> <font color="#fff">Home</font></a>
+                        </p> 
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+
+            </div>  
+
+
+            <br />
+
+        </f:view>
+    </h:body>
+
+
+
+
+
+
+</html>
+

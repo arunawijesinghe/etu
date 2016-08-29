@@ -14,15 +14,18 @@ public enum CategoryType {
     TriageCategory,
     PatientCondition,
     WorkingDiagnosis;
-    
-    private String Label;
+
+   private String label;
 
     public String getLabel() {
-        return Label;
+        return label;
     }
 
-    public void setLabel(String Label) {
-        this.Label = Label;
+    public void setLabel(String label) {
+        this.label = label;
     }
-  
+   
+
+    
+ 
 }

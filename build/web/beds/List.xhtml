@@ -5,55 +5,59 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+         
+    <f:view locale="#{languageController.language}">
+   
+        <ui:composition template="/template.xhtml">
 
-    <ui:composition template="/template.xhtml">
 
 
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ListBedsTitle}"></h:outputText>
-        </ui:define>
+            <ui:define name="title">
+                <h:outputText value="#{bundle.ListBedsTitle}"></h:outputText>
+            </ui:define>
 
-        <ui:define name="body">
-            <h:form id="BedsListForm">
-                <p:panel header="#{bundle.ListBedsTitle}">
-                    <p:dataTable id="datalist" value="#{bedsController.items}" var="item"
-                                 selectionMode="single" selection="#{bedsController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+            <ui:define name="body">
+                <h:form id="BedsListForm">
+                    <p:panel header="#{bundle.ListBedsTitle}">
+                        <p:dataTable id="datalist" value="#{bedsController.items}" var="item"
+                                     selectionMode="single" selection="#{bedsController.selected}"
+                                     paginator="true"
+                                     rowKey="#{item.id}"
+                                     rows="10"
+                                     rowsPerPageTemplate="10,20,30,40,50"
+                                     >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBedsTitle_bedNo}"/>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBedsTitle_bedNo}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.bedNo}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListBedsTitle_department}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.department.ename}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{bedsController.prepareCreate}" update=":BedsCreateForm" oncomplete="PF('BedsCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":BedsViewForm" oncomplete="PF('BedsViewDialog').show()" disabled="#{empty bedsController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":BedsEditForm" oncomplete="PF('BedsEditDialog').show()" disabled="#{empty bedsController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{bedsController.destroy}" update=":growl,datalist" disabled="#{empty bedsController.selected}"/>
                             </f:facet>
-                            <h:outputText value="#{item.bedNo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBedsTitle_department}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.department.ename}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{bedsController.prepareCreate}" update=":BedsCreateForm" oncomplete="PF('BedsCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":BedsViewForm" oncomplete="PF('BedsViewDialog').show()" disabled="#{empty bedsController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":BedsEditForm" oncomplete="PF('BedsEditDialog').show()" disabled="#{empty bedsController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{bedsController.destroy}" update=":growl,datalist" disabled="#{empty bedsController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
 
-            <ui:include src="Create.xhtml"/>
-            <ui:include src="Edit.xhtml"/>
-            <ui:include src="View.xhtml"/>
-        </ui:define>
-    </ui:composition>
+                <ui:include src="Create.xhtml"/>
+                <ui:include src="Edit.xhtml"/>
+                <ui:include src="View.xhtml"/>
+            </ui:define>
 
+        </ui:composition>
+    </f:view>
 </html>

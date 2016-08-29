@@ -5,9 +5,10 @@
  */
 package etu.controller;
 
-import etu.entity.Category;
 import etu.enums.CategoryType;
 import etu.enums.Gender;
+import etu.enums.Investigation;
+import etu.enums.Outcome;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -19,7 +20,8 @@ import java.io.Serializable;
 @Named(value = "enumController")
 @SessionScoped
 public class EnumController implements Serializable {
-private CategoryType selected;
+
+
     /**
      * Creates a new instance of EnumController
      */
@@ -32,17 +34,14 @@ private CategoryType selected;
    public CategoryType[] getCategoryValues() {
     return CategoryType.values();
   }
-   public CategoryType[] getAreaValues() {
-    return CategoryType.values();
-  }
+   public Outcome[] getPatientsOutcomes(){
+   return Outcome.values();
+   }
+   public Investigation[] getPatientsInvestigations(){
+   return Investigation.values();
+   }
 
-    public CategoryType getSelected() {
-        return selected;
-    }
-
-    public void setSelected(CategoryType selected) {
-        this.selected = selected;
-    }
+  
 
   
    

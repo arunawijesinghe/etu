@@ -1,12 +1,16 @@
+
 package etu.controller;
 
 import etu.entity.Category;
 import etu.controller.util.JsfUtil;
 import etu.controller.util.JsfUtil.PersistAction;
+import etu.enums.CategoryType;
 import etu.sessionbean.CategoryFacade;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +30,9 @@ public class CategoryController implements Serializable {
     @EJB
     private etu.sessionbean.CategoryFacade ejbFacade;
     private List<Category> items = null;
+    private List<Category> areas = null;
+    private List<Category> triags = null;
+    private List<Category> conditions = null;
     private Category selected;
     private String label;
 
@@ -34,10 +41,47 @@ public class CategoryController implements Serializable {
 
     public Category getSelected() {
         return selected;
+
+    }
+
+    public List<Category> getAreas() {
+        if (areas == null) {
+            areas = listCategories(CategoryType.Area);
+        }
+        return areas;
+    }
+
+    public List<Category> getTriageCategories() {
+        if (triags == null) {
+            triags = listCategories(CategoryType.TriageCategory);
+        }
+        return triags;
+    }
+
+    public List<Category> getPatientConditions() {
+        if (conditions == null) {
+
+            conditions = listCategories(CategoryType.PatientCondition);
+        }
+        return conditions;
+
+    }
+
+    private List<Category> listCategories(CategoryType type) {
+        String j;
+        Map m = new HashMap();
+        m.put("t", type);
+        j = "select c from Category c where c.type=:t order by c.ename";
+        return getFacade().findBySQL(j, m);
+    }
+
+    public void setAreas(List<Category> areas) {
+        this.areas = areas;
     }
 
     public void setSelected(Category selected) {
         this.selected = selected;
+
     }
 
     protected void setEmbeddableKeys() {
@@ -128,6 +172,18 @@ public class CategoryController implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    
+
+    public void setTriags(List<Category> triags) {
+        this.triags = triags;
+    }
+
+    
+
+    public void setConditions(List<Category> conditions) {
+        this.conditions = conditions;
     }
 
     @FacesConverter(forClass = Category.class)
